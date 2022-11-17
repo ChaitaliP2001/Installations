@@ -1,0 +1,79 @@
+#Update Ubuntu Package
+•	apt-get update -y
+•	apt-get upgrade -y
+
+#Install HTTPS and Curl
+•	apt-get update -y
+•	apt-get install -y apt-transport-https ca-certificates curl
+
+#Step 1: Install Docker
+#Kubernetes requires an existing Docker installation. If you already have Docker installed, skip ahead to Step 2.
+#If you do not have Kubernetes, install it by following these steps:
+#1. Update the package list with the command:
+
+- sudo apt-get update
+ 
+# Next, install Docker with the command:
+
+- sudo apt-get install docker.io
+
+#3. Repeat the process on each server that will act as a node.
+#4. Check the installation (and version) by entering the following:
+
+
+- docker ––version
+
+#Step 2: Start and Enable Docker
+#1. Set Docker to launch at boot by entering the following:
+
+- sudo systemctl enable docker
+
+#2. Verify Docker is running:
+
+- sudo systemctl status docker
+
+#To start Docker if it’s not running:
+
+sudo systemctl start docker
+
+#3. Repeat on all the other nodes.
+
+
+#Install Kubernetes
+#Step 3: Add Kubernetes Signing Key
+#Since you are downloading Kubernetes from a non-standard repository, it is essential to ensure that the software is authentic. This is done by adding a signing key.
+#1. Enter the following to add a signing key:
+
+- curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+
+#If you get an error that curl is not installed, install it with:
+
+- sudo apt-get install curl
+
+#2. Then repeat the previous command to install the signing keys. Repeat for each server node.
+#Step 4: Add Software Repositories
+#Kubernetes is not included in the default repositories. To add them, enter the following:
+
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+
+#Repeat on each server node.
+#Step 5: Kubernetes Installation Tools
+#Kubeadm (Kubernetes Admin) is a tool that helps initialize a cluster. It fast-tracks setup by using community-sourced best practices. Kubelet is the work package, which runs on every node and starts containers. The tool gives you command-line access to clusters.
+#1. Install Kubernetes tools with the command:
+
+- sudo apt-get install kubeadm kubelet kubectl
+
+#2. Verify the installation with:
+
+- kubeadm version
+
+#kubeadm initialization
+
+- kubeadm init
+
+#Adding weavenet-
+
+- kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s-1.11.yaml
+
+
+- kubectl get nodes
