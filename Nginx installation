@@ -1,0 +1,23 @@
+nginx installation on ubuntu-
+
+cat /etc/os-release
+apt-get update -y
+nginx
+apt-get install nginx
+apt-get install nginx*
+nginx -v
+ps fax | grep nginx
+curl ifconfig.me
+netstat -tunlp
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+nginx installation on CentOS-
+
+yum update -y
+wget http://nginx.org/download/nginx-1.17.8.tar.gz
+yum list | grep nginx
+yum install nginx
+systemctl enable nginx
+chkconfig nginx on
+systemctl status nginx
